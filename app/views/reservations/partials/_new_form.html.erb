@@ -1,5 +1,5 @@
 <div class="row justify-content-center my-5">
-  <div class="col-6">
+  <div class="col-6 border rounded p-5">
     <h2 class="text-center">Make a Reservation</h2>
     <%= form_with model: reservation, scope: :reservation, url: reservations_path, method: :post, data: { turbo_stream: true } do |f| %>
 
@@ -11,7 +11,7 @@
 
       <div class="form-group mb-3">
         <%= f.label :name, class: 'form-label' %>
-        <%= f.text_field :name, class: "form-control" %>
+        <%= f.text_field :name, class: "form-control", required: true %>
       </div>
 
       <div class="form-group mb-3">
@@ -20,8 +20,8 @@
       </div>
 
       <div class="form-group mb-3">
-        <%= f.label :seating_capacity, "Requested Seating Capacity" %>
-        <%= f.number_field :seating_capacity, class: "form-select" %>
+        <%= f.label :requested_capacity, "Requested Seating Capacity", class: 'form-label' %>
+        <%= f.number_field :requested_capacity, class: "form-select", required: true %>
       </div>
       <%= f.submit "Reserve", class: "btn btn-primary" %>
     <% end %>

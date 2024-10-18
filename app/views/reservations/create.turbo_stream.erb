@@ -1,3 +1,9 @@
 <%= turbo_stream.update('reservation_form', partial: 'reservations/partials/new_form', locals: { reservation: @updated_reservation }) %>
 
-<%= turbo_stream.prepend("reservations", partial: 'reservations/partials/reservation', locals: { reservation: @reservation }) if @reservation.id.present? %>
+<% if @reservation.id.present? %>
+  <%= turbo_stream.prepend("reservations", partial: 'reservations/partials/reservation', locals: { reservation: @reservation }) %>
+
+  <%= turbo_stream.replace('empty-text') %>
+<% end %>
+
+

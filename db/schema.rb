@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_18_000056) do
 
   create_table "reservations", force: :cascade do |t|
     t.string "name"
-    t.integer "seating_capacity"
+    t.integer "requested_capacity"
     t.datetime "reserve_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,7 +1,5 @@
 class ReservationsController < ApplicationController
 
-  def welcome; end
-
   def index
     @reservations = Reservation.all
   end
@@ -20,15 +18,11 @@ class ReservationsController < ApplicationController
 
   private
 
-  def reservation_params
-    params.require(:reservation).permit(:name, :seating_capacity, :reserve_time)
-  end
-
   def reserve_tables(reservation)
-    seating_capacity = reservation_params[:seating_capacity].to_i
+    requested_capacity = reservation_params[:requested_capacity].to_i
 
     available_tables_slot = available_tables_for_reserved_time(reservation.reserve_time)
-    selected_tables_slot = select_tables_for_capacity(available_tables_slot, seating_capacity)
+    selected_tables_slot = select_tables_for_capacity(available_tables_slot, requested_capacity)
 
     if selected_tables_slot.present?
       reservation.tables << selected_tables_slot
@@ -46,16 +40,20 @@ class ReservationsController < ApplicationController
     Table.where.not(id: reserved_tables)
   end
 
-  def select_tables_for_capacity(available_tables, seating_capacity)
+  def select_tables_for_capacity(available_tables, requested_capacity)
     selected_tables = []
     total_capacity = 0
 
     available_tables.order(capacity: :desc).each do |table|
       selected_tables << table
       total_capacity += table.capacity
-      break if total_capacity >= seating_capacity
+      break if total_capacity >= requested_capacity
     end
 
-    total_capacity >= seating_capacity ? selected_tables : nil
+    total_capacity >= requested_capacity ? selected_tables : nil
+  end
+
+  def reservation_params
+    params.require(:reservation).permit(:name, :requested_capacity, :reserve_time)
   end
 end

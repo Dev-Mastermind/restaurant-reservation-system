@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'reservations/index'
-  get 'reservations/create'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root "home#welcome"
+  resources :reservations, only: [:index, :create]
 end

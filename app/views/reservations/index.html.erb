@@ -1,0 +1,24 @@
+<div class="container p-2">
+  <%= turbo_frame_tag 'reservation_form' do %>
+    <%= render partial: 'reservations/partials/new_form', locals: { reservation: Reservation.new } %>
+  <% end %>
+
+  <h2>Existing Reservations</h2>
+
+  <% if @reservations.present? %>
+    <table class="table">
+      <thead>
+        <td>Name</td>
+        <td>Time</td>
+        <td>Seating Capacity</td>
+        <td>Table No</td>
+      </thead>
+
+      <tbody id='reservations'>
+        <%= render partial: 'reservations/partials/reservation', collection: @reservations, as: :reservation %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="text-center text-secondary">No reservations yet</p>
+  <% end %>
+</div>

@@ -1,0 +1,8 @@
+<%# locals: (reservation:) -%>
+
+<tr>
+  <td><%= reservation.name %></td>
+  <td><%= reservation.reserve_time.strftime("%A, %b %d, %Y %l:%M %p") %></td>
+  <td><%= reservation.seating_capacity %></td>
+  <td><%= reservation.tables.pluck(:id).join(", ") %></td>
+</tr>

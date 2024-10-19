@@ -13,12 +13,14 @@ This is a simple reservation system built with Ruby on Rails. The app allows use
 
 ## Technologies Used
 
-- **Ruby:** ~> 3.x
-- **Rails:** 7.x
+- **Ruby:** ~> 3.1.2
+- **Rails:** 7.0.8.5
+- **RVM:** 1.29.12
 - **Database:** PotgreSQL
 - **Bootstrap:** Responsive UI
 - **Turbo:** Submit reservations request without page load using Hotwire/Turbo.
 - **RSpec:** For unit testing
+
 - **FactoryBot, Shoulda-Matchers, Database Cleaner:** For model and controller tests
 
 ## Getting Started
@@ -27,8 +29,8 @@ This is a simple reservation system built with Ruby on Rails. The app allows use
 
 Make sure you have the following installed:
 
-- Ruby ~> 3.x
-- Rails ~> 7.x
+- Ruby ~> 3.1.2
+- Rails ~> 7.0.8.5
 - PostgreSQL/MySQL (for development, production)
 
 ### Installation
@@ -52,9 +54,43 @@ Make sure you have the following installed:
 
 5. Visit `http://localhost:3000` to access the app.
 
+
+6. Run `rspec` command to run all test or run `rspec spec/file_spec.rb` to run specific file
+
 ## Database Setup
 
-The app uses **Postgresql** for development. You can switch to any other database by updating the `config/database.yml` file accordingly.
+The app uses **PostgreSQL** for development. To set up PostgreSQL, follow these steps:
+
+1. **Install PostgreSQL**:
+  - If you haven't already installed PostgreSQL, you can download it from the [official PostgreSQL website](https://www.postgresql.org/download/) or install it using a package manager:
+  - **macOS**: `brew install postgresql`
+  - **Ubuntu**: `sudo apt-get install postgresql postgresql-contrib`
+
+2. **Start PostgreSQL Service**:
+  - Make sure the PostgreSQL service is running:
+  - **macOS**: `brew services start postgresql`
+  - **Ubuntu**: `sudo service postgresql start`
+
+3. **Create the Database**:
+  - Open the PostgreSQL command line interface:
+   ```bash
+   psql postgres
+   ```
+  - Create a new user (replace `your_username` and `your_password`):
+   ```sql
+   CREATE USER your_username WITH PASSWORD 'your_password';
+   ```
+  - Grant privileges to the user:
+   ```sql
+   ALTER USER your_username CREATEDB;
+   ```
+
+4. **Update Database Configuration**:
+  - Update your `config/database.yml` file with your PostgreSQL username and password.
+
+## Environment Variables
+
+To manage environment-specific configurations, this app uses a `.env` file. You can setup your respective environments to be used in app within `.env` by following template from `.env.example`
 
 --------------------------------------------------------------
 

@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: restaurant_reservation_system_production
-  username: restaurant_reservation_system
-  password: <%= ENV["RESTAURANT_RESERVATION_SYSTEM_DATABASE_PASSWORD"] %>
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>

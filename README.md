@@ -86,7 +86,7 @@ The app uses **PostgreSQL** for development. To set up PostgreSQL, follow these 
    ```
 
 4. **Update Database Configuration**:
-  - Update your `config/database.yml` file with your PostgreSQL username and password.
+  - Update your `config/database.yml` file and set your PostgreSQL DATABASE_USERNAME and DATABASE_PASSWORD within `.env` file that can be used in `config/database.yml` file.
 
 ## Environment Variables
 
